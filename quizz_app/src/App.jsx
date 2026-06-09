@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import PrivateRoute from './components/PrivateRoute';
 // import HomePage from './pages/HomePage';
 
@@ -12,6 +13,7 @@ function App() {
             <Routes>
                 {/* Rutas Públicas */}
                 <Route path="/login" element={!token ? <LoginPage /> : <Navigate to="/" />} />
+                <Route path="/register" element={!token ? <RegisterPage /> : <Navigate to="/" />} />
                 
                 {/* Rutas Protegidas (Envueltas en PrivateRoute) */}
                 <Route element={<PrivateRoute />}>
