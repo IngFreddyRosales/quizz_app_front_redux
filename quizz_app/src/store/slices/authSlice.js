@@ -1,11 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { login, register } from '../thunks/authThunks';
 
+const getUserFromStorage = () => {
+    try {
+        const user = localStorage.getItem('user');
+        return user && user !== 'undefined' ? JSON.parse(user) : null;
+    } catch (e) {
+        return null;
+    }
+};
+
+const getTokenFromStorage = () => {
+    const token = localStorage.getItem('token');
+    return token && token !== 'undefined' ? token : null;
+};
+
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        user:   JSON.parse(localStorage.getItem('user')) || null,
-        token:  localStorage.getItem('token') || null,
+        user:   getUserFromStorage(),
+        token:  getTokenFromStorage(),
         status: 'idle',
         error:  null,
     },

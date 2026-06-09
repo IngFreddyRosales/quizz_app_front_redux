@@ -15,7 +15,7 @@ const LoginPage = () => {
 
     useEffect(() => {
         if (status === 'succeeded') {
-            navigate('/');
+            navigate('/home');
         }
     }, [status, navigate]);
 

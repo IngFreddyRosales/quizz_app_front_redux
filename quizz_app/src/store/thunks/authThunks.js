@@ -6,6 +6,7 @@ export const login = createAsyncThunk(
     async (credentials, { rejectWithValue }) => {
         try {
             const res = await loginApi(credentials);
+            console.log("LOGUEOOOOO:", res.data)
             return res.data;
         } catch (error) {
             return rejectWithValue(error.response?.data?.message || 'Error al iniciar sesión');
