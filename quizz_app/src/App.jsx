@@ -4,7 +4,6 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import PrivateRoute from './components/PrivateRoute';
 import HomePage from './pages/HomePage';
-// import HomePage from './pages/HomePage';
 
 function App() {
     const token = useSelector((state) => state.auth.token);
