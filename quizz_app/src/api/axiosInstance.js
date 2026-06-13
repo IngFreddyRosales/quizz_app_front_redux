@@ -30,7 +30,7 @@ api.interceptors.response.use(
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             // Recargamos la app para limpiar el estado de Redux y mandarlo al login
-            window.location.href = '/login'; 
+            window.location.href = '/login';
         }
         return Promise.reject(error);
     }

@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import PrivateRoute from './components/PrivateRoute';
 import HomePage from './pages/HomePage';
+import QuizzPage from './pages/QuizzPage';
 
 function App() {
     const token = useSelector((state) => state.auth.token);
@@ -18,6 +19,7 @@ function App() {
                 {/* Rutas Protegidas (Envueltas en PrivateRoute) */}
                 <Route element={<PrivateRoute />}>
                     <Route path="/home" element={<HomePage />} />
+                    <Route path="/quiz/:categoryId" element={<QuizzPage />} />
                     {/* Aquí irán las demás: /quiz, /profile, /leaderboard */}
                 </Route>
 

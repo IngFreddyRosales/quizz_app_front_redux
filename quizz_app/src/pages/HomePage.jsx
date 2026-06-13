@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategories } from '../store/thunks/categoriesThunks';
 import '../styles/HomePage.css';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
     const dispatch = useDispatch();
@@ -31,9 +32,10 @@ const HomePage = () => {
                     <div
                         key={category.id}
                         className="category-card"
-                        onClick={() => console.log('Categoria seleccionada:', category.id)}
                     >
-                        <h2>{category.name}</h2>
+                        <Link to={`/quiz/${category.id}`}>
+                            <h2>{category.name}</h2>
+                        </Link>
                     </div>
                 ))}
             </div>
