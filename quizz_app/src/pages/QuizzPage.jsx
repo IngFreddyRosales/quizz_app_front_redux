@@ -12,7 +12,7 @@ const QuizzPage = () => {
     const { categoryId } = useParams();
     const quiz = useQuiz(categoryId);
 
-    // ── Loading state ───────────────────────────────────
+    // Loading state
     if (quiz.status === 'loading' && !quiz.currentQuestion) {
         return (
             <div className="qz-page">
@@ -24,12 +24,11 @@ const QuizzPage = () => {
         );
     }
 
-    // ── Error state ─────────────────────────────────────
+    // Error state
     if (quiz.status === 'failed' && !quiz.result && !quiz.currentQuestion) {
         return (
             <div className="qz-page">
                 <div className="qz-state qz-state--error">
-                    <span className="qz-error-icon">😵</span>
                     <p>{quiz.error || 'Ocurrió un error inesperado'}</p>
                     <button onClick={quiz.handleRetry}>Reintentar</button>
                     <button onClick={quiz.handleGoHome}>Volver al inicio</button>
@@ -38,7 +37,7 @@ const QuizzPage = () => {
         );
     }
 
-    // ── Results screen ──────────────────────────────────
+    // Results screen
     if (quiz.result) {
         return (
             <div className="qz-page">
@@ -51,10 +50,9 @@ const QuizzPage = () => {
         );
     }
 
-    // ── No question loaded yet ──────────────────────────
+    // No question loaded
     if (!quiz.currentQuestion) return null;
 
-    // ── Active quiz ─────────────────────────────────────
     return (
         <div className="qz-page">
             <div className="qz-wrapper">

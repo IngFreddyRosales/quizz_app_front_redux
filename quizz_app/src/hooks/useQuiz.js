@@ -10,13 +10,13 @@ import {
 } from '../store/thunks/quizThunks';
 import { nextQuestion, resetQuiz, resumeSession } from '../store/slices/quizSlice';
 
-const TIMER_SECONDS = 30;
+const TIMER_SECONDS = 22;
 
 const useQuiz = (categoryId) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // ── Redux state ─────────────────────────────────────
+    // ── Redux state 
     const {
         sessionId,
         activeSessionConflict,
@@ -30,14 +30,14 @@ const useQuiz = (categoryId) => {
         error,
     } = useSelector((state) => state.quiz);
 
-    // ── Local UI state ──────────────────────────────────
+    // Local UI state
     const [showAbandonModal, setShowAbandonModal] = useState(false);
     const [timeLeft, setTimeLeft] = useState(TIMER_SECONDS);
     const timerRef = useRef(null);
     const questionStartRef = useRef(Date.now());
     const hasInitialized = useRef(false);
 
-    // ── Derived values ──────────────────────────────────
+    //  Derived values
     const currentQuestion = questions[currentQuestionIndex] || null;
     const isLastQuestion = currentQuestionIndex === questions.length - 1 && questions.length > 0;
     const hasAnsweredCurrent = answerFeedback !== null;
@@ -50,7 +50,7 @@ const useQuiz = (categoryId) => {
     const timerPercent = (timeLeft / TIMER_SECONDS) * 100;
     const timerStatus = timeLeft > 15 ? 'safe' : timeLeft > 5 ? 'warn' : 'danger';
 
-    // ── Initialization ──────────────────────────────────
+    // ── Initialization
     useEffect(() => {
         if (hasInitialized.current) return;
         hasInitialized.current = true;
@@ -76,7 +76,7 @@ const useQuiz = (categoryId) => {
         };
     }, [categoryId, dispatch]);
 
-    // ── Handle active session conflict ──────────────────
+    // ── Handle active session conflict
     useEffect(() => {
         if (activeSessionConflict?.session_id) {
             // Reanudar la sesión activa automáticamente
@@ -85,10 +85,10 @@ const useQuiz = (categoryId) => {
         }
     }, [activeSessionConflict, categoryId, dispatch]);
 
-    // ── Timer logic ─────────────────────────────────────
+    // ── Timer logic & Auto-submit consolidated
     useEffect(() => {
-        // Solo correr timer si hay pregunta y no se ha respondido
-        if (!currentQuestion || hasAnsweredCurrent) {
+        // Solo correr timer si hay pregunta, no se ha respondido y la sesión está activa
+        if (!currentQuestion || hasAnsweredCurrent || !sessionId) {
             clearInterval(timerRef.current);
             return;
         }
@@ -101,6 +101,15 @@ const useQuiz = (categoryId) => {
             setTimeLeft((prev) => {
                 if (prev <= 1) {
                     clearInterval(timerRef.current);
+
+                    // Disparar submit por timeout
+                    dispatch(submitAnswer({
+                        session_id: sessionId,
+                        question_id: currentQuestion.id,
+                        selected_option_id: null, // Evita elegir una opción por azar
+                        response_time_ms: TIMER_SECONDS * 1000,
+                    }));
+
                     return 0;
                 }
                 return prev - 1;
@@ -108,33 +117,16 @@ const useQuiz = (categoryId) => {
         }, 1000);
 
         return () => clearInterval(timerRef.current);
-    }, [currentQuestionIndex, currentQuestion, hasAnsweredCurrent]);
+    }, [currentQuestionIndex, currentQuestion, hasAnsweredCurrent, sessionId, dispatch]);
 
-    // ── Auto-submit when timer hits 0 ───────────────────
-    useEffect(() => {
-        if (timeLeft === 0 && currentQuestion && !hasAnsweredCurrent && sessionId) {
-            // Enviar con la primera opción como "timeout" (sin selección real)
-            // O simplemente enviar con response_time_ms = max
-            const firstOption = currentQuestion.QuestionOptions?.[0];
-            if (firstOption) {
-                dispatch(submitAnswer({
-                    session_id: sessionId,
-                    question_id: currentQuestion.id,
-                    selected_option_id: firstOption.id,
-                    response_time_ms: TIMER_SECONDS * 1000,
-                }));
-            }
-        }
-    }, [timeLeft, currentQuestion, hasAnsweredCurrent, sessionId, dispatch]);
-
-    // ── Cleanup on unmount ──────────────────────────────
+    // ── Cleanup on unmount
     useEffect(() => {
         return () => {
             clearInterval(timerRef.current);
         };
     }, []);
 
-    // ── Actions ─────────────────────────────────────────
+    // ── Actions
     const handleSelectOption = useCallback((optionId) => {
         if (hasAnsweredCurrent || status === 'submitting' || !sessionId || !currentQuestion) return;
 

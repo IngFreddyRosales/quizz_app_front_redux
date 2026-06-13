@@ -6,7 +6,6 @@ const QuizFeedback = ({ feedback, isLastQuestion, onNext, onFinish }) => {
     return (
         <>
             <div className={`qz-feedback ${isCorrect ? 'qz-feedback--correct' : 'qz-feedback--wrong'}`}>
-                <span className="qz-feedback-icon">{isCorrect ? '✅' : '❌'}</span>
                 <div className="qz-feedback-body">
                     <span className="qz-feedback-title">
                         {isCorrect ? '¡Correcto!' : 'Incorrecto'}
@@ -26,7 +25,7 @@ const QuizFeedback = ({ feedback, isLastQuestion, onNext, onFinish }) => {
             <div className="qz-actions">
                 {isLastQuestion ? (
                     <button className="qz-btn-next" onClick={onFinish}>
-                        Finalizar 🏁
+                        Finalizar
                     </button>
                 ) : (
                     <button className="qz-btn-next" onClick={onNext}>

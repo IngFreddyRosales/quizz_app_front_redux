@@ -7,7 +7,6 @@ const QuizTimer = ({ timeLeft, timerPercent, timerStatus }) => {
 
     return (
         <div className="qz-timer-wrap">
-            <span className="qz-timer-icon">⏱️</span>
             <div className="qz-timer-bar">
                 <div
                     className={`qz-timer-fill ${timerStatus}`}

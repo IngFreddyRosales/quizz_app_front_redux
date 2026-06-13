@@ -11,10 +11,10 @@ const QuizResult = ({ result, onRetry, onGoHome }) => {
     const avgTime = stats?.avg_response_time ? `${(stats.avg_response_time / 1000).toFixed(1)}s` : '—';
 
     const getResultEmoji = () => {
-        if (percentage >= 90) return '🏆';
-        if (percentage >= 70) return '🎉';
-        if (percentage >= 50) return '👍';
-        return '💪';
+        if (percentage >= 90) return '';
+        if (percentage >= 70) return '';
+        if (percentage >= 50) return '';
+        return '';
     };
 
     const getResultMessage = () => {
@@ -34,22 +34,22 @@ const QuizResult = ({ result, onRetry, onGoHome }) => {
 
             <div className="qz-result-stats">
                 <div className="qz-stat-card">
-                    <span className="qz-stat-icon">⭐</span>
+                    <span className="qz-stat-icon"></span>
                     <span className="qz-stat-val">{totalPoints}</span>
                     <span className="qz-stat-lbl">Puntos</span>
                 </div>
                 <div className="qz-stat-card">
-                    <span className="qz-stat-icon">✅</span>
+                    <span className="qz-stat-icon"></span>
                     <span className="qz-stat-val">{correctCount}/{totalQ}</span>
                     <span className="qz-stat-lbl">Correctas</span>
                 </div>
                 <div className="qz-stat-card">
-                    <span className="qz-stat-icon">🔥</span>
+                    <span className="qz-stat-icon"></span>
                     <span className="qz-stat-val">{bestStreak}</span>
                     <span className="qz-stat-lbl">Mejor racha</span>
                 </div>
                 <div className="qz-stat-card">
-                    <span className="qz-stat-icon">⚡</span>
+                    <span className="qz-stat-icon"></span>
                     <span className="qz-stat-val">{avgTime}</span>
                     <span className="qz-stat-lbl">Tiempo prom.</span>
                 </div>
@@ -58,7 +58,7 @@ const QuizResult = ({ result, onRetry, onGoHome }) => {
             {season_stats && (
                 <div className="qz-result-stats">
                     <div className="qz-stat-card">
-                        <span className="qz-stat-icon">🏅</span>
+                        <span className="qz-stat-icon"></span>
                         <span className="qz-stat-val">{season_stats.total_points ?? 0}</span>
                         <span className="qz-stat-lbl">Puntos temporada</span>
                     </div>
@@ -67,7 +67,7 @@ const QuizResult = ({ result, onRetry, onGoHome }) => {
 
             {unlocked_achievements && unlocked_achievements.length > 0 && (
                 <div className="qz-achievements">
-                    <h3>🎖️ Logros desbloqueados</h3>
+                    <h3>Logros desbloqueados</h3>
                     <div className="qz-achievement-list">
                         {unlocked_achievements.map((ach, idx) => (
                             <span
@@ -75,7 +75,7 @@ const QuizResult = ({ result, onRetry, onGoHome }) => {
                                 className="qz-achievement-chip"
                                 style={{ animationDelay: `${idx * 0.15}s` }}
                             >
-                                🏅 {ach.name || ach.title}
+                                {ach.name || ach.title}
                             </span>
                         ))}
                     </div>
@@ -84,7 +84,7 @@ const QuizResult = ({ result, onRetry, onGoHome }) => {
 
             <div className="qz-result-actions">
                 <button className="qz-btn-primary" onClick={onRetry}>
-                    Jugar otra vez 🔄
+                    Jugar otra vez
                 </button>
                 <button className="qz-btn-secondary" onClick={onGoHome}>
                     Volver al inicio

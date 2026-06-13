@@ -4,7 +4,6 @@ const AbandonModal = ({ isOpen, onConfirm, onCancel }) => {
     return (
         <div className="qz-modal-overlay" onClick={onCancel}>
             <div className="qz-modal" onClick={(e) => e.stopPropagation()}>
-                <span className="qz-modal-icon">⚠️</span>
                 <h3>¿Abandonar el quiz?</h3>
                 <p>
                     Si sales ahora, perderás todo el progreso de esta sesión.
