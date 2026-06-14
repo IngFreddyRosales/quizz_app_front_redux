@@ -12,12 +12,12 @@
 
 .home-header h1 {
     font-size: 28px;
-    color: #1f2937;
+    color: #ffffff;
     margin-bottom: 8px;
 }
 
 .home-header p {
-    color: #6b7280;
+    color: #a8b1c5;
     font-size: 16px;
 }
 
@@ -28,8 +28,8 @@
 }
 
 .category-card {
-    background-color: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: linear-gradient(to bottom, #6349a7 0%, #7842c1 100%);
+    border: 1px solid transparent;
     border-radius: 8px;
     padding: 30px 20px;
     text-align: center;
@@ -43,8 +43,8 @@
 }
 
 .category-card h2 {
-    font-size: 18px;
-    color: #1f2937;
+    font-size: 23px;
+    color: #ffffff;
     margin: 0;
 }
 

@@ -64,9 +64,12 @@ export const submitAnswer = createAsyncThunk(
 // 4. Finaliza la sesión → devuelve resultado completo
 export const finishQuizSession = createAsyncThunk(
     'quiz/finishSession',
-    async (sessionId, { rejectWithValue }) => {
+    async (payload, { rejectWithValue }) => {
         try {
-            const res = await finishQuizSessionApi(sessionId);
+            const sessionId = typeof payload === 'object' ? payload.sessionId : payload;
+            const statsData = typeof payload === 'object' ? payload.statsData : undefined;
+            
+            const res = await finishQuizSessionApi(sessionId, statsData);
             return res.data.data;
             // devuelve: { session, stats, season_stats, unlocked_achievements }
         } catch (error) {

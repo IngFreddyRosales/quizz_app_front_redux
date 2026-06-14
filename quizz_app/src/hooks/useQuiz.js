@@ -85,7 +85,7 @@ const useQuiz = (categoryId) => {
         }
     }, [activeSessionConflict, categoryId, dispatch]);
 
-    // ── Timer logic & Auto-submit consolidated
+    // ── Timer logic (solo countdown, el auto-submit lo maneja QuizQuestion)
     useEffect(() => {
         // Solo correr timer si hay pregunta, no se ha respondido y la sesión está activa
         if (!currentQuestion || hasAnsweredCurrent || !sessionId) {
@@ -101,15 +101,6 @@ const useQuiz = (categoryId) => {
             setTimeLeft((prev) => {
                 if (prev <= 1) {
                     clearInterval(timerRef.current);
-
-                    // Disparar submit por timeout
-                    dispatch(submitAnswer({
-                        session_id: sessionId,
-                        question_id: currentQuestion.id,
-                        selected_option_id: null, // Evita elegir una opción por azar
-                        response_time_ms: TIMER_SECONDS * 1000,
-                    }));
-
                     return 0;
                 }
                 return prev - 1;
@@ -117,7 +108,7 @@ const useQuiz = (categoryId) => {
         }, 1000);
 
         return () => clearInterval(timerRef.current);
-    }, [currentQuestionIndex, currentQuestion, hasAnsweredCurrent, sessionId, dispatch]);
+    }, [currentQuestionIndex, currentQuestion, hasAnsweredCurrent, sessionId]);
 
     // ── Cleanup on unmount
     useEffect(() => {
@@ -147,9 +138,20 @@ const useQuiz = (categoryId) => {
 
     const handleFinish = useCallback(() => {
         if (sessionId) {
-            dispatch(finishQuizSession(sessionId));
+            const correct_count = answers.filter(a => a.is_correct).length;
+            const wrong_count = answers.filter(a => !a.is_correct).length;
+
+            dispatch(finishQuizSession({
+                sessionId,
+                statsData: {
+                    score: totalScore,
+                    xp_earned: totalScore,
+                    correct_count,
+                    wrong_count
+                }
+            }));
         }
-    }, [sessionId, dispatch]);
+    }, [sessionId, dispatch, answers, totalScore]);
 
     const handleAbandon = useCallback(() => {
         setShowAbandonModal(true);

@@ -19,8 +19,8 @@ export const answerQuestionApi = async (answerData) => {
 };
 // answerData = { session_id, question_id, selected_option_id, response_time_ms }
 
-export const finishQuizSessionApi = (id) =>
-    api.put(`quiz-sessions/${id}/finish`);
+export const finishQuizSessionApi = (id, statsData) =>
+    api.put(`quiz-sessions/${id}/finish`, statsData);
 
 export const abandonQuizSessionApi = (id) =>
     api.put(`quiz-sessions/${id}/abandon`);

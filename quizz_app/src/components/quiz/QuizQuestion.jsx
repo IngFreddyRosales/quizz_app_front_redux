@@ -1,8 +1,19 @@
+import { useEffect, useRef } from 'react';
+
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
-const QuizQuestion = ({ question, currentIndex, totalQuestions, answerFeedback, isSubmitting, onSelectOption }) => {
+const QuizQuestion = ({ question, currentIndex, totalQuestions, answerFeedback, isSubmitting, timeLeft, onSelectOption }) => {
     const options = question.QuestionOptions || [];
     const disabled = !!answerFeedback || isSubmitting;
+    const prevTimeLeftRef = useRef(timeLeft);
+
+    // Auto-submit cuando el timer TRANSICIONA de >0 a 0 (timeout real)
+    useEffect(() => {
+        if (timeLeft === 0 && prevTimeLeftRef.current > 0 && !answerFeedback && !isSubmitting) {
+            onSelectOption(null);
+        }
+        prevTimeLeftRef.current = timeLeft;
+    }, [timeLeft, answerFeedback, isSubmitting, onSelectOption]);
 
     const getOptionClass = (option) => {
         const classes = ['qz-option'];

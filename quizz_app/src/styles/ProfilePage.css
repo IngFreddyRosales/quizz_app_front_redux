@@ -1,0 +1,332 @@
+/* ══════════════════════════════════════════════════
+   ProfilePage.css  ·  Consistent with QuizzPage theme
+   ══════════════════════════════════════════════════ */
+
+/* ── Page wrapper ───────────────────────────────── */
+.pf-page {
+    font-family: sans-serif;
+    min-height: 100%;
+    background-color: #151b32;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.pf-wrapper {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ── Generic card ───────────────────────────────── */
+.pf-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 28px 24px;
+    box-sizing: border-box;
+}
+
+/* ── Hero / info personal ────────────────────────── */
+.pf-hero {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.pf-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a78bfa, #7c3aed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.45);
+}
+
+.pf-hero-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+.pf-username {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.pf-role-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    background-color: rgba(167, 139, 250, 0.2);
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #a78bfa;
+    text-transform: capitalize;
+    width: fit-content;
+}
+
+.pf-email {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 2px 0 0 0;
+}
+
+/* ── Nivel + barra XP ────────────────────────────── */
+.pf-level-wrap {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.pf-level-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.pf-level-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #a78bfa;
+}
+
+.pf-xp-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.pf-xp-bar {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.pf-xp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7c3aed, #a78bfa);
+    border-radius: 999px;
+    transition: width 0.6s ease;
+}
+
+/* ── Section title ───────────────────────────────── */
+.pf-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin: 0 0 18px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pf-badge-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background-color: #7c3aed;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* ── Stats grid ──────────────────────────────────── */
+.pf-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+@media (max-width: 600px) {
+    .pf-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.pf-stat-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    padding: 16px 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: background 0.18s ease;
+}
+
+.pf-stat-card:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.pf-stat-val {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.pf-stat-lbl {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    font-weight: 500;
+}
+
+/* ── Achievements grid ───────────────────────────── */
+.pf-achievements-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pf-ach-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    transition: background 0.18s ease;
+}
+
+.pf-ach-card:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.pf-ach-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.pf-ach-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.pf-ach-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.pf-ach-desc {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.4;
+}
+
+/* ── Loading / Error / Empty states ──────────────── */
+.pf-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 200px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 100px auto 0;
+    box-sizing: border-box;
+}
+
+.pf-state p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+}
+
+.pf-state--error p {
+    color: #fca5a5;
+}
+
+.pf-state--error button {
+    padding: 10px 20px;
+    background-color: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    border-radius: 6px;
+    color: #fca5a5;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+
+.pf-state--error button:hover {
+    background-color: rgba(239, 68, 68, 0.25);
+}
+
+.pf-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #a78bfa;
+    border-radius: 50%;
+    animation: pf-spin 0.8s linear infinite;
+}
+
+@keyframes pf-spin {
+    to { transform: rotate(360deg); }
+}
+
+.pf-loading-text,
+.pf-error-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0;
+}
+
+.pf-error-text {
+    color: #fca5a5;
+}
+
+.pf-empty {
+    text-align: center;
+    padding: 24px 0 8px;
+}
+
+.pf-empty p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0 0 4px 0;
+}
+
+.pf-empty-hint {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.3) !important;
+}

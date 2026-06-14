@@ -4,23 +4,35 @@
 
 /* ── Variables ────────────────────────────────── */
 :root {
-  --qz-bg:          #f3f4f6; /* Matching login-container background */
-  --qz-surface:     #ffffff; /* White card surface */
-  --qz-border:      #e5e7eb; /* Light gray border */
-  --qz-border-hover:#3b82f6; /* Blue hover border */
-  --qz-blue:        #3b82f6; /* Info/Primary blue */
-  --qz-green:       #10b981; /* Correct green */
-  --qz-green-bg:    #ecfdf5; /* Light correct green background */
-  --qz-green-border:#a7f3d0;
-  --qz-red:         #ef4444; /* Incorrect red */
-  --qz-red-bg:      #fef2f2; /* Light incorrect red background */
-  --qz-red-border:  #fecaca;
-  --qz-yellow:      #f59e0b;
-  --qz-text:        #1f2937; /* Dark gray text */
-  --qz-muted:       #6b7280; /* Medium gray text */
-  --qz-font:        sans-serif;
-  --qz-radius:      8px;     /* Matching category-card and login-card */
-  --qz-trans:       0.2s ease;
+  --qz-bg: #151b32;
+  /* Matching login-container background */
+  --qz-surface: #ffffffc8;
+  /* White card surface */
+  --qz-border: #e5e7eb;
+  /* Light gray border */
+  --qz-border-hover: #3b82f6;
+  /* Blue hover border */
+  --qz-blue: #3b82f6;
+  /* Info/Primary blue */
+  --qz-green: #10b981;
+  /* Correct green */
+  --qz-green-bg: #ecfdf5;
+  /* Light correct green background */
+  --qz-green-border: #a7f3d0;
+  --qz-red: #ef4444;
+  /* Incorrect red */
+  --qz-red-bg: #fef2f2;
+  /* Light incorrect red background */
+  --qz-red-border: #fecaca;
+  --qz-yellow: #f59e0b;
+  --qz-text: #1f2937;
+  /* Dark gray text */
+  --qz-muted: #6b7280;
+  /* Medium gray text */
+  --qz-font: sans-serif;
+  --qz-radius: 8px;
+  /* Matching category-card and login-card */
+  --qz-trans: 0.2s ease;
 }
 
 /* ── Layout ──────────────────────────────────── */
@@ -157,9 +169,17 @@
   transition: width 1s linear, background-color 0.3s ease;
 }
 
-.qz-timer-fill.safe   { background-color: var(--qz-green); }
-.qz-timer-fill.warn   { background-color: var(--qz-yellow); }
-.qz-timer-fill.danger { background-color: var(--qz-red); }
+.qz-timer-fill.safe {
+  background-color: var(--qz-green);
+}
+
+.qz-timer-fill.warn {
+  background-color: var(--qz-yellow);
+}
+
+.qz-timer-fill.danger {
+  background-color: var(--qz-red);
+}
 
 .qz-timer-time {
   font-size: 14px;
@@ -383,7 +403,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .qz-state p {

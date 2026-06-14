@@ -76,6 +76,7 @@ const QuizzPage = () => {
                     totalQuestions={quiz.questions.length}
                     answerFeedback={quiz.answerFeedback}
                     isSubmitting={quiz.status === 'submitting'}
+                    timeLeft={quiz.timeLeft}
                     onSelectOption={quiz.handleSelectOption}
                 />
 
