@@ -172,6 +172,21 @@
     text-transform: capitalize;
 }
 
+.sidenav__admin-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: rgba(167, 139, 250, 0.2);
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #a78bfa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: fit-content;
+    margin-top: 2px;
+}
+
 .sidenav__logout {
     display: flex;
     align-items: center;

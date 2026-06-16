@@ -7,8 +7,8 @@ import '../styles/ProfilePage.css';
 const ProfilePage = () => {
     const dispatch = useDispatch();
 
-    const user                                     = useSelector((s) => s.auth.user);
-    const { stats, isLoading: statsLoading, error: statsError }     = useSelector((s) => s.userStats);
+    const user = useSelector((s) => s.auth.user);
+    const { stats, isLoading: statsLoading, error: statsError } = useSelector((s) => s.userStats);
     const { list: achievements, loading: achLoading, error: achError } = useSelector((s) => s.userAchievements);
 
     useEffect(() => {
@@ -19,10 +19,10 @@ const ProfilePage = () => {
     const isLoading = statsLoading || achLoading;
 
     // ── Derived ────────────────────────────────────
-    const initials   = user?.username ? user.username.slice(0, 2).toUpperCase() : '??';
-    const totalXp    = stats?.total_xp     ?? 0;
-    const level      = stats?.level        ?? 1;
-    const xpForNext  = level * 100;
+    const initials = user?.username ? user.username.slice(0, 2).toUpperCase() : '??';
+    const totalXp = stats?.total_xp ?? 0;
+    const level = stats?.level ?? 1;
+    const xpForNext = level * 100;
     const xpProgress = Math.min(Math.round((totalXp % 100) / 100 * 100), 100);
 
     // ── Loading ────────────────────────────────────
@@ -87,14 +87,6 @@ const ProfilePage = () => {
                                 <span className="pf-stat-lbl">Nivel</span>
                             </div>
                             <div className="pf-stat-card">
-                                <span className="pf-stat-val">{stats.current_streak ?? 0}</span>
-                                <span className="pf-stat-lbl">Racha actual</span>
-                            </div>
-                            <div className="pf-stat-card">
-                                <span className="pf-stat-val">{stats.max_streak ?? 0}</span>
-                                <span className="pf-stat-lbl">Mejor racha</span>
-                            </div>
-                            <div className="pf-stat-card">
                                 <span className="pf-stat-val">{stats.correct_answers ?? 0}</span>
                                 <span className="pf-stat-lbl">Respuestas correctas</span>
                             </div>
@@ -124,7 +116,7 @@ const ProfilePage = () => {
                     </h2>
 
                     {achLoading && <p className="pf-loading-text">Cargando logros...</p>}
-                    {achError   && <p className="pf-error-text">{achError}</p>}
+                    {achError && <p className="pf-error-text">{achError}</p>}
 
                     {!achLoading && achievements.length === 0 && (
                         <div className="pf-empty">

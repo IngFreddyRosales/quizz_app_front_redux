@@ -7,6 +7,8 @@ import AppLayout from './components/AppLayout';
 import HomePage from './pages/HomePage';
 import QuizzPage from './pages/QuizzPage';
 import ProfilePage from './pages/ProfilePage';
+import RankingPage from './pages/RankingPage';
+import AdminPage from './pages/AdminPage';
 
 function App() {
     const token = useSelector((state) => state.auth.token);
@@ -15,14 +17,16 @@ function App() {
         <BrowserRouter>
             <Routes>
                 {/* Rutas Públicas */}
-                <Route path="/login"    element={!token ? <LoginPage />    : <Navigate to="/home" />} />
+                <Route path="/login" element={!token ? <LoginPage /> : <Navigate to="/home" />} />
                 <Route path="/register" element={!token ? <RegisterPage /> : <Navigate to="/home" />} />
 
                 {/* Rutas protegidas CON sidebar (AppLayout) */}
                 <Route element={<PrivateRoute />}>
                     <Route element={<AppLayout />}>
-                        <Route path="/home"        element={<HomePage />} />
-                        <Route path="/profile"     element={<ProfilePage />} />
+                        <Route path="/home" element={<HomePage />} />
+                        <Route path="/profile" element={<ProfilePage />} />
+                        <Route path="/leaderboard" element={<RankingPage />} />
+                        <Route path="/admin" element={<AdminPage />} />
                         {/* Aquí irán: /leaderboard, etc. */}
                     </Route>
                 </Route>
@@ -33,8 +37,8 @@ function App() {
                 </Route>
 
                 {/* Ruta por defecto y comodín (404) */}
-                <Route path="/"  element={<Navigate to={token ? '/home' : '/login'} />} />
-                <Route path="*"  element={<Navigate to={token ? '/home' : '/login'} />} />
+                <Route path="/" element={<Navigate to={token ? '/home' : '/login'} />} />
+                <Route path="*" element={<Navigate to={token ? '/home' : '/login'} />} />
             </Routes>
         </BrowserRouter>
     );

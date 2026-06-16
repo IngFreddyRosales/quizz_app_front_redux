@@ -1,4 +1,15 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTotalScoreByUserThunk } from '../../store/thunks/seasonThunks';
+
 const QuizResult = ({ result, onRetry, onGoHome }) => {
+    const dispatch = useDispatch();
+    const { totalScore } = useSelector((state) => state.seasons);
+
+    useEffect(() => {
+        dispatch(fetchTotalScoreByUserThunk());
+    }, [dispatch]);
+
     if (!result) return null;
 
     const { session, stats, season_stats, unlocked_achievements } = result;
@@ -49,10 +60,10 @@ const QuizResult = ({ result, onRetry, onGoHome }) => {
                 </div>
             </div>
 
-            {season_stats && (
+            {(season_stats || totalScore !== undefined) && (
                 <div className="qz-result-stats">
                     <div className="qz-stat-card">
-                        <span className="qz-stat-val">{season_stats.total_points ?? 0}</span>
+                        <span className="qz-stat-val">{totalScore ?? season_stats?.total_score ?? 0}</span>
                         <span className="qz-stat-lbl">Puntos temporada</span>
                     </div>
                 </div>

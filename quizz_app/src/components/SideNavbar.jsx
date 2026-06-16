@@ -3,10 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../store/slices/authSlice';
 import '../styles/SideNavbar.css';
 
-const NAV_LINKS = [
+const BASE_LINKS = [
     { to: '/home', label: 'Inicio' },
     { to: '/profile', label: 'Perfil' },
     { to: '/leaderboard', label: 'Ranking' },
+];
+
+const ADMIN_LINKS = [
+    { to: '/admin', label: 'Admin' },
 ];
 
 const SideNavbar = () => {
@@ -23,6 +27,9 @@ const SideNavbar = () => {
         ? user.username.slice(0, 2).toUpperCase()
         : '??';
 
+    const isAdmin = user?.is_admin === true;
+    const navLinks = isAdmin ? [...BASE_LINKS, ...ADMIN_LINKS] : BASE_LINKS;
+
     return (
         <aside className="sidenav">
             {/* Brand */}
@@ -32,7 +39,7 @@ const SideNavbar = () => {
 
             {/* Navigation links */}
             <nav className="sidenav__nav">
-                {NAV_LINKS.map(({ to, label }) => (
+                {navLinks.map(({ to, label }) => (
                     <NavLink
                         key={to}
                         to={to}
@@ -54,7 +61,10 @@ const SideNavbar = () => {
                     <div className="sidenav__avatar">{initials}</div>
                     <div className="sidenav__user-info">
                         <span className="sidenav__user-name">{user?.username ?? 'Usuario'}</span>
-                        <span className="sidenav__user-role">{user?.role ?? 'jugador'}</span>
+                        <span className="sidenav__user-role">
+                            {isAdmin ? 'Administrador' : (user?.role ?? 'jugador')}
+                        </span>
+                        {isAdmin && <span className="sidenav__admin-badge">Admin</span>}
                     </div>
                 </div>
                 <button className="sidenav__logout" onClick={handleLogout} title="Cerrar sesión">

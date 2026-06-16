@@ -3,12 +3,12 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f3f4f6;
+    background-color: rgba(167, 139, 250, 0.2);
     font-family: sans-serif;
 }
 
 .register-card {
-    background-color: #ffffff;
+    background-color: #ffffffd2;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

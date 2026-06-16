@@ -1,0 +1,251 @@
+/* ══════════════════════════════════════════════════
+   RankingPage.css  ·  Consistent with app dark theme
+   ══════════════════════════════════════════════════ */
+
+/* ── Page wrapper ───────────────────────────────── */
+.rk-page {
+    font-family: sans-serif;
+    min-height: 100%;
+    background-color: #151b32;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.rk-wrapper {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ── Header ─────────────────────────────────────── */
+.rk-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.rk-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.rk-header p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0;
+}
+
+/* ── Season badge ───────────────────────────────── */
+.rk-season-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background-color: rgba(167, 139, 250, 0.12);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 999px;
+    width: fit-content;
+}
+
+.rk-season-badge span {
+    font-size: 13px;
+    font-weight: 600;
+    color: #a78bfa;
+}
+
+.rk-season-dates {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(167, 139, 250, 0.6) !important;
+}
+
+/* ── Generic card ───────────────────────────────── */
+.rk-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+/* ── Section title ───────────────────────────────── */
+.rk-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin: 0 0 16px 0;
+}
+
+/* ── Leaderboard list ───────────────────────────── */
+.rk-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ── Leaderboard row ────────────────────────────── */
+.rk-row {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    transition: background 0.18s ease;
+}
+
+.rk-row:hover {
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+/* Top 3 highlights */
+.rk-row--1 {
+    border-color: rgba(251, 191, 36, 0.35);
+    background-color: rgba(251, 191, 36, 0.06);
+}
+
+.rk-row--2 {
+    border-color: rgba(156, 163, 175, 0.35);
+    background-color: rgba(156, 163, 175, 0.05);
+}
+
+.rk-row--3 {
+    border-color: rgba(180, 120, 80, 0.35);
+    background-color: rgba(180, 120, 80, 0.05);
+}
+
+/* ── Rank position ──────────────────────────────── */
+.rk-rank {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.rk-rank--1 { color: #fbbf24; }
+.rk-rank--2 { color: #9ca3af; }
+.rk-rank--3 { color: #b47850; }
+
+/* ── User info ──────────────────────────────────── */
+.rk-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.rk-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a78bfa, #7c3aed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.rk-username {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rk-sub {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Score ──────────────────────────────────────── */
+.rk-score {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.rk-score-val {
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.rk-score-lbl {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+/* ── Empty state ────────────────────────────────── */
+.rk-empty {
+    text-align: center;
+    padding: 32px 0;
+}
+
+.rk-empty p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+}
+
+/* ── Loading / Error states ─────────────────────── */
+.rk-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 200px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 80px auto 0;
+    box-sizing: border-box;
+}
+
+.rk-state p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+}
+
+.rk-state--error p {
+    color: #fca5a5;
+}
+
+.rk-spinner {
+    width: 38px;
+    height: 38px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #a78bfa;
+    border-radius: 50%;
+    animation: rk-spin 0.8s linear infinite;
+}
+
+@keyframes rk-spin {
+    to { transform: rotate(360deg); }
+}
